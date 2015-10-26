@@ -1,0 +1,78 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="conference">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Node/Angular Conference</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="stylesheets/style.css">
+
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-sanitize.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.3/ng-csv.min.js"></script>
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/conference.js"></script> <!-- load our conference service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+
+	<header>
+		<h2>Conference</h2>
+	<form ng-init="content='showSpeakers'" > 
+      <input id="showSpeakers" type="radio" name="content" checked="checked"  ng-model="content" value="showSpeakers">
+      <label for="showSpeakers">Speakers</label>
+      <input id="showOrganizations" type="radio" name="content" ng-model="content" value="showOrganizations">
+      <label for="showOrganizations">Organizations</label>
+      
+      <button type="button" ng-csv="getArray" style="float:right;margin-right:10px;" filename="conference.csv" 
+      csv-header="['Id','lsoUID','description','length','level','pdfUrl','title','sessionTopic1','sessionTopic2','sessionTopic3','sessionTopic4','sessionTopic5','type','videoUrl']">Export</button>
+      
+    </form>
+		
+	</header>
+	<section>
+		<div class="text-center"  ng-show="content == 'showSpeakers'"> 
+			<h3> Speakers</h3>
+			<!-- LOOP OVER THE speakers IN $scope.conference -->
+			<ul> 
+			 <li ng-repeat="(id, speaker) in conference.speakers">
+			    <label > 
+					{{ speaker.name }} has spoken at {{ speaker.sessions.length}} session(s).
+				</label>		    
+			 </li>		
+			</ul>
+		</div>
+		<div class="text-center"  ng-show="content == 'showOrganizations'"> 
+			<h3> Organizations</h3>
+			<!-- LOOP OVER THE organizations IN $scope.conference -->
+			<ul> 
+			 <li ng-repeat="(id, emails) in conference.organizations">
+			    <label > 
+			    
+					{{  id }} has {{ emails.length }} employee(s) that spoken at {{getSessionNum(emails)}} session(s).
+				</label>		    
+			 </li>		
+			</ul>
+		</div>
+		
+	</section>
+
+<footer class="text-center text-muted">
+			<p>A demo by <a href="">Rebecca Huang</a>.</p>
+</footer>
+
+
+
+</body>
+</html>

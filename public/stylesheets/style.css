@@ -1,0 +1,76 @@
+html{
+    min-height:100%;/* make sure it is at least as tall as the viewport */
+}
+body {
+  padding: 50px;
+  height: 100%;
+  position: relative; 
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+li { 
+	background: white; 
+	display: block;
+	text-align: left;
+}
+
+li:nth-child(odd) { 
+	background: rgba(106, 201, 247, 0.4); 
+}
+
+a {
+  color: #00B7FF;
+}
+
+header {
+   text-align:center;
+   padding:5px;	 
+}
+
+nav {
+   	width:150px;
+   	float:left;
+   	padding:5px;	      
+}
+
+section {
+   float:left;
+   padding:10px;
+   height: 400px;
+   width:100%;
+   overflow: auto;   
+}
+
+footer {
+   clear:both;
+   text-align:center;
+   padding:5px;	 	 
+}
+
+input[type=radio   ]:not(old) + label{
+  display      : inline-block;
+  margin-left  : -28px;
+  padding-left : 28px;
+  padding-right : 128px;
+  line-height  : 24px;
+}
+
+section div{
+	float: left;
+	width:100%;
+}
+
+button {
+    line-height: 1.5;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.ui_button {
+	padding: 2px 5px;
+    line-height: 1.5;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}

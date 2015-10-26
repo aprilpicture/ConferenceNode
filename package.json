@@ -1,0 +1,11 @@
+{
+  "name": "ConferenceNode",
+  "version": "0.0.0",
+  "main": "server.js",
+  "author": "rhuang",
+  "dependencies": {
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "request": "~2.65.0"
+  }
+}
