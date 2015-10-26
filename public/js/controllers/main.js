@@ -99,7 +99,7 @@ String.prototype.organizationName = function() {
 };
 
 function hashAdd(map, key, value, append){
-	key = key.trim();
+	key = key.trim().toLowerCase();
 	if(map[key] == undefined){
 		if(append){
 			map[key] = [value];
