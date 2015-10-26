@@ -36,11 +36,13 @@ angular.module('conferenceController', ["ngSanitize", "ngCsv"])
 		}
 
 		$scope.getArray =  function() {   
-			for(var i in $scope.data ){
-				var session = $scope.data[i];
+			 var uploadData = angular.copy($scope.data);
+
+			for(var i in uploadData ){
+				var session = uploadData[i];
 				delete session["speakerInfo"];
 			}
-		    return $scope.data;                            
+		    return uploadData;                            
 
 		}
 

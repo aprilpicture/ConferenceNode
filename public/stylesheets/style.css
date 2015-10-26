@@ -5,7 +5,7 @@ body {
   padding: 50px;
   height: 100%;
   position: relative; 
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 li { 
@@ -15,8 +15,9 @@ li {
 }
 
 li:nth-child(odd) { 
-	background: rgba(106, 201, 247, 0.4); 
+	background: #f9f9f9; 
 }
+
 
 a {
   color: #00B7FF;
@@ -73,4 +74,52 @@ button {
     border-radius: 5px;
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.ui_detail{
+	height: 200px;	
+    border-top-color: rgba(0, 0, 0, 0.22);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-left-color: rgba(0, 0, 0, 0.22);
+    border-left-style: solid;
+    border-left-width: 1px;
+}
+.ui_session{
+	max-height:150px; 
+	overflow:scroll; 
+	
+}
+
+label{
+	text-align: left;
+}
+
+p{
+	font-size: 14px;
+	margin-top: .5em; 
+	color: #666;
+	margin-left: 10px;
+	text-align: left;
+		
+}
+
+p start{
+	font-size: .8em;
+    font-weight: bold;
+	text-transform:uppercase;
+	letter-spacing:2px; 
+}
+/* bootstrap*/
+
+.nav {
+    margin-bottom: 10px;
+}
+
+.nav>li>a {
+    padding: 5px 10px;
+}
+
+.tab-content>.tab-pane, .pill-content>.pill-pane {
+    margin-left: 10px;    
 }

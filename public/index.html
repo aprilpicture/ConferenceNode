@@ -16,6 +16,9 @@
 
 
 	<!-- SPELLS -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" ></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
   	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-sanitize.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.3/ng-csv.min.js"></script>
@@ -28,12 +31,14 @@
 <body ng-controller="mainController">
 
 	<header>
-		<h2>Conference</h2>
+		<h2>GTC Session</h2>
 	<form ng-init="content='showSpeakers'" > 
       <input id="showSpeakers" type="radio" name="content" checked="checked"  ng-model="content" value="showSpeakers">
       <label for="showSpeakers">Speakers</label>
       <input id="showOrganizations" type="radio" name="content" ng-model="content" value="showOrganizations">
       <label for="showOrganizations">Organizations</label>
+      <input id="showDetail" type="radio" name="content" ng-model="content" value="showDetail">
+      <label for="showDetail">Detail (SPA)</label>
       
       <button type="button" ng-csv="getArray" style="float:right;margin-right:10px;" filename="conference.csv" 
       csv-header="['Id','lsoUID','description','length','level','pdfUrl','title','sessionTopic1','sessionTopic2','sessionTopic3','sessionTopic4','sessionTopic5','type','videoUrl']">Export</button>
@@ -58,12 +63,93 @@
 			<!-- LOOP OVER THE organizations IN $scope.conference -->
 			<ul> 
 			 <li ng-repeat="(id, emails) in conference.organizations">
-			    <label > 
-			    
+			    <label > 			    
 					{{  id }} has {{ emails.length }} employee(s) that spoken at {{getSessionNum(emails)}} session(s).
 				</label>		    
 			 </li>		
 			</ul>
+		</div>
+		<div  ng-show="content == 'showDetail'"> 
+		  	<div class="ui_detail" ng-repeat="session in data">
+		  		<label style="float:left;">{{session.id}}</label>
+		  		<label style="float:right; max-width: 700px;">{{session.title}}</label>
+		  		<div style="float:left;">
+		  		<ul class="nav nav-pills">
+				  <li style="background: white;" class="active"><a href="#description{{session.id}}" data-toggle="tab">Description</a></li>
+				  <li style="background: white;"><a href="#schedule{{session.id}}" data-toggle="tab">Schedule</a></li>
+				  <li style="background: white;"><a href="#speakers{{session.id}}" data-toggle="tab">Speakers</a></li>
+				</ul>
+				<div class="tab-content ui_session">
+				
+					<div class="tab-pane active" id="description{{session.id}}">
+					 	<label style="float:left; width:100%">Description</label>
+			  			<p>{{session.description}}</p>
+	        		</div>
+			        <div class="tab-pane" id="schedule{{session.id}}">
+					 	<label style="float:left; width:100%">Schedule</label>
+					 	<table class="table table-striped">
+						    <thead>
+						      <tr>
+						        <th>sessionTopic1</th>
+						        <th>sessionTopic2</th>
+						        <th>sessionTopic3</th>
+						        <th>sessionTopic4</th>
+						        <th>sessionTopic5</th>
+						      </tr>
+						    </thead>
+    						<tbody>							
+							 <tr>
+							    <td > 
+									{{ session.sessionTopic1 }}
+								</td>		    
+							    <td > 
+									{{ session.sessionTopic2 }}
+								</td>		    
+							    <td > 
+									{{ session.sessionTopic3 }}
+								</td>		    
+							    <td > 
+									{{ session.sessionTopic4 }}
+								</td>		    
+							    <td > 
+									{{ session.sessionTopic5 }}
+								</td>		    
+							 </tr>
+							 </tbody>		
+							</table>
+			        </div>
+			        <div class="tab-pane" id="speakers{{session.id}}">
+					 	<label style="float:left; width:100%">Speakers</label>
+							<table class="table table-striped">
+						    <thead>
+						      <tr>
+						        <th>Name</th>
+						        <th>organization</th>
+						        <th>Email</th>
+						        <th>job Title</th>
+						      </tr>
+						    </thead>
+    						<tbody>							
+							 <tr ng-repeat="speaker in session.speakerInfo">
+							    <td > 
+									{{ speaker.name }}
+								</td>		    
+							    <td > 
+									{{ speaker.organization }}
+								</td>		    
+							    <td > 
+									{{ speaker.email }}
+								</td>		    
+							    <td > 
+									{{ speaker.jobTitle }}
+								</td>		    
+							 </tr>
+							 </tbody>		
+							</table>
+			        </div>
+				</div>     
+				</div>  
+		  	</div>
 		</div>
 		
 	</section>
