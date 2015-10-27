@@ -1,19 +1,24 @@
 angular.module('conferenceController', ["ngSanitize", "ngCsv"])
 
 	// inject the service factory into our controller
-	.controller('mainController', ['$scope','$http','Conference', function($scope, $http, Conference) {
-
+ .controller('mainController', ['$scope','$http','Conference', function($scope, $http, Conference) {
+		$scope.currentPage = 1,
+		$scope.itemPerPage = 30;
 		// GET =====================================================================
 		Conference.get()
 			.success(function(data) {
 			   // $scope.getArray = [{a: 1, b:2}, {a:3, b:4}];                            
-
 				$scope.data = data;
+				$scope.confdata= data.slice(0, (($scope.currentPage++) * $scope.itemPerPage));
 				$scope.conference = buildConferenceData(data);
 			}).error(function (data) {
 			 //   NotificationFactory.showError();
 			});
 
+		
+		$scope.add= function(){
+		//	$scope.confdata = data.slice(0, (($scope.currentPage++) * $scope.itemPerPage));
+		}
 		
 		$scope.getOranizationName = function(emails, id){
 			var i = 0;
@@ -45,11 +50,33 @@ angular.module('conferenceController', ["ngSanitize", "ngCsv"])
 		    return uploadData;                            
 
 		}
-
 		
-	}]);
+		
+		
+	}])
+	.directive("scroll", function () {
+    return  function (scope, element, attr) {
 
+    	document.getElementById('contentSection').addEventListener("scroll", function(event) {
+    		if(scope.content == "showDetail"){
+                body = document.getElementById("contentSection");
+
+        		var height = Math.max( body.clientHeight, body.scrollHeight, body.offsetHeight);
+        	    if ((body.scrollTop + body.offsetHeight)  > (height-500)) {
+        			if((scope.currentPage +1)*scope.itemPerPage < scope.data.length){
+        				scope.confdata = scope.data.slice(0, ((scope.currentPage++) * scope.itemPerPage));
+        			}
+        	    }
+        	    scope.$apply();
+
+    		}
+                         
+    	});
+        
+    }
+});
 ////////////////
+
 
 var buildConferenceData = function(data){
 	var speakers = {};

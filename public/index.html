@@ -17,6 +17,7 @@
 
 	<!-- SPELLS -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" ></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
@@ -46,9 +47,9 @@
     </form>
 		
 	</header>
-	<section>
+	<section id="contentSection" scroll >
 		<div class="text-center"  ng-show="content == 'showSpeakers'"> 
-			<h3> Speakers</h3>
+			<h4> Speakers</h4>
 			<!-- LOOP OVER THE speakers IN $scope.conference -->
 			<ul> 
 			 <li ng-repeat="(id, speaker) in conference.speakers">
@@ -59,7 +60,7 @@
 			</ul>
 		</div>
 		<div class="text-center"  ng-show="content == 'showOrganizations'"> 
-			<h3> Organizations</h3>
+			<h4> Organizations</h4>
 			<!-- LOOP OVER THE organizations IN $scope.conference -->
 			<ul> 
 			 <li ng-repeat="(id, emails) in conference.organizations">
@@ -70,7 +71,7 @@
 			</ul>
 		</div>
 		<div  ng-show="content == 'showDetail'"> 
-		  	<div class="ui_detail" ng-repeat="session in data">
+		  	<div class="ui_detail" ng-repeat="session in confdata track by $index">
 		  		<label style="float:left;">{{session.id}}</label>
 		  		<label style="float:right; max-width: 700px;">{{session.title}}</label>
 		  		<div style="float:left;">

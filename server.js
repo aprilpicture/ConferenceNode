@@ -6,7 +6,7 @@ app.use(express.static(__dirname + '/public')); 		// set the static files locati
 
 
 app.get('/api/conference', function(req, res){
-/*	var url = "https://registration.gputechconf.com/cubehenge/json.php/GTC.MobileGuestServices.getSessions/GTC%202015/true";
+	var url = "https://registration.gputechconf.com/cubehenge/json.php/GTC.MobileGuestServices.getSessions/GTC%202015/true";
 	request(url, function(err, resp, body) {
 	    if (!err && resp.statusCode == 200) {			
 			res.json(JSON.parse(body));
@@ -15,10 +15,10 @@ app.get('/api/conference', function(req, res){
 	    }
 		
 	});
-	*/ 
+	/* 
 	 fs = require('fs')
 	 var body = fs.readFileSync(__dirname + '/public/' + 'input001.txt', 'utf8');
-	res.json(JSON.parse(body));
+	res.json(JSON.parse(body));*/
 });
 
 app.listen(8081);
