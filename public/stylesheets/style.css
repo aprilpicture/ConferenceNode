@@ -4,7 +4,7 @@ html{
 }
 
 body {
-  padding: 50px;
+  padding: 20px;
   height: 100%;
   position: relative; 
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -39,6 +39,7 @@ nav {
 section {
    float:left;
    padding:10px;
+    height: 70vh;
    width:100%;
     overflow: auto;
 }
