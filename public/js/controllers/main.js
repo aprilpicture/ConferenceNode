@@ -129,13 +129,13 @@ function hashAdd(map, key, value, append){
 	key = key.trim().toLowerCase();
 	if(map[key] == undefined){
 		if(append){
-			map[key] = [value];
+			map[key] = [value.trim().toLowerCase()];
 		}else{
 			map[key] = value;	
 		}
 	}else{
 		if(append){
-			map[key].push(value);
+			map[key].push(value.trim().toLowerCase());
 		}
 		
 	}
